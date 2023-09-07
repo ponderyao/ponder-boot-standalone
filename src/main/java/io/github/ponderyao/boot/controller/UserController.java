@@ -95,6 +95,16 @@ public class UserController {
     }
 
     /**
+     * 获取登录信息
+     */
+    @GetMapping("/login")
+    public Response<LoginUserVO> getLoginUser(HttpServletRequest request) {
+        User user = userService.getLoginUser(request);
+        LoginUserVO loginUserVO = UserConvertor.INSTANCE.entityToLoginView(user);
+        return Response.success(loginUserVO);
+    }
+
+    /**
      * 查询用户
      */
     @GetMapping("/{userId}")
